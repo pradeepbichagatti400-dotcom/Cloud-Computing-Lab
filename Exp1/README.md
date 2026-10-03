@@ -64,3 +64,30 @@ Virtual Machine
        |
        v
 Guest Operating System
+
+# 7. Type-2 Hypervisor: VMware Workstation
+
+## 7.1 VMware Workstation
+
+VMware Workstation is used as the Type-2 hypervisor in this experiment.
+
+A Type-2 hypervisor runs on top of a host operating system. It provides a virtualization layer through which virtual machines can be created and executed.
+
+In this experiment, Ubuntu is used as the guest operating system inside the VMware virtual machine.
+
+The basic virtualization structure is:
+
+```text
+Physical Hardware
+       |
+       v
+Host Operating System
+       |
+       v
+VMware Workstation
+       |
+       v
+Virtual Machine
+       |
+       v
+Ubuntu Guest Operating System
