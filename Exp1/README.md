@@ -2,68 +2,66 @@
 
 ## 1. Aim
 
-To study Type-1 and Type-2 hypervisors and analyze their performance using virtual machines, system resource monitoring, and CPU benchmarking with Sysbench.
+To study and compare the performance of a Type-1 hypervisor and a Type-2 hypervisor by creating similarly configured virtual machines and performing CPU performance analysis using Sysbench.
+
+The experiment uses:
+
+- Proxmox VE as the Type-1 hypervisor
+- VMware Workstation as the Type-2 hypervisor
+- Ubuntu as the guest operating system
+- Sysbench as the CPU benchmarking tool
 
 ---
 
-## 2. Objectives
+# 2. Objectives
 
 1. To understand the concept of virtualization and hypervisors.
 2. To study Type-1 and Type-2 hypervisors.
 3. To create and configure a virtual machine using Proxmox VE.
 4. To create and configure a virtual machine using VMware Workstation.
-5. To monitor CPU, memory, disk, and system resource utilization.
-6. To perform CPU benchmarking using Sysbench.
-7. To compare the performance of Type-1 and Type-2 hypervisors using the obtained results.
+5. To use comparable CPU, memory and disk configurations in both virtual machines.
+6. To install and configure Ubuntu as the guest operating system.
+7. To verify CPU, memory and disk configurations.
+8. To monitor system resource utilization.
+9. To install and use Sysbench for CPU performance analysis.
+10. To record benchmark results from both virtualization environments.
+11. To compare the measured performance of Type-1 and Type-2 hypervisors.
 
 ---
 
-## 3. Introduction
+# 3. Introduction
 
-A hypervisor, also known as a Virtual Machine Monitor (VMM), is a virtualization layer that allows virtual machines to run on a physical computer.
+Virtualization is a technology that allows a physical computer's resources to be used to create one or more virtual machines.
+
+A virtual machine behaves like an independent computer and can run its own operating system and applications.
+
+A hypervisor, also called a Virtual Machine Monitor (VMM), manages virtual machines and provides access to the underlying computing resources.
 
 Hypervisors are mainly classified into two types:
 
 - Type-1 Hypervisor
 - Type-2 Hypervisor
 
-### 3.1 Type-1 Hypervisor
-
-A Type-1 hypervisor, also called a bare-metal hypervisor, runs directly on the physical hardware. It manages the hardware resources and provides virtual machines with the required resources.
-
-In this experiment, Proxmox VE is used as the Type-1 hypervisor.
-
-### 3.2 Type-2 Hypervisor
-
-A Type-2 hypervisor, also called a hosted hypervisor, runs on top of a host operating system. The host operating system provides the underlying hardware interaction for the virtual machines.
-
-In this experiment, VMware Workstation is used as the Type-2 hypervisor.
-
 ---
 
-## 4. Hypervisor Architecture
+# 4. Types of Hypervisors
 
-The basic difference between Type-1 and Type-2 hypervisors can be represented as follows.
+## 4.1 Type-1 Hypervisor
 
-```mermaid
-flowchart TB
+A Type-1 hypervisor, also known as a bare-metal hypervisor, runs directly on the physical hardware.
 
-    subgraph Type1["Type-1 Hypervisor"]
-        H1["Physical Hardware"]
-        HYP1["Proxmox VE"]
-        VM1["Ubuntu Virtual Machine"]
+The basic architecture is:
 
-        H1 --> HYP1
-        HYP1 --> VM1
-    end
-
-    subgraph Type2["Type-2 Hypervisor"]
-        H2["Physical Hardware"]
-        OS["Host Operating System"]
-        HYP2["VMware Workstation"]
-        VM2["Ubuntu Virtual Machine"]
-
-        H2 --> OS
-        OS --> HYP2
-        HYP2 --> VM2
-    end
+```text
+Physical Hardware
+       |
+       v
+Type-1 Hypervisor
+       |
+       +----------------+
+       |                |
+       v                v
+ Virtual Machine 1   Virtual Machine 2
+       |
+       v
+ Guest Operating System
